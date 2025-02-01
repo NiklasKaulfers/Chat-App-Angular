@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import {NgIf} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-page',
-  imports: [
-    NgIf
-  ],
   templateUrl: './start-page.component.html',
-  styleUrl: './start-page.component.css'
+  styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent {
-  loggedIn: boolean = !!localStorage.getItem("userToken");
+  showHeader: boolean = false;
+
+  constructor(private router: Router) {}
+
+  toggleHeader(show: boolean = true) {
+    this.showHeader = show;
+    if (show) {
+      this.router.navigate(['/login']); // Navigate to login when clicked
+    }
+  }
 }
