@@ -1,42 +1,10 @@
-<ng-container>
-  <header *ngIf="showHeader" class="fixed-top bg-white shadow-sm p-3 d-flex justify-content-between align-items-center">
-    <h1 class="h5 fw-bold text-dark">HSZG Chat</h1>
-    <nav>
-      <a (click)="setView('home')" class="text-primary text-decoration-none me-3 cursor-pointer">Home</a>
-      <a (click)="setView('login')" class="text-primary text-decoration-none me-3 cursor-pointer">Login</a>
-      <a (click)="setView('register')" class="text-primary text-decoration-none cursor-pointer">Register</a>
-    </nav>
-  </header>
+<div [class.fixed-header]="showHeader" class="transition-all duration-500 flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div *ngIf="!showHeader" class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">HSZG Chat App</h1>
 
-  <div [class.fixed-header]="showHeader" class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-light">
-    <div *ngIf="currentView === 'home'" class="bg-white shadow-sm rounded p-4 w-100 max-w-400 text-center">
-      <h1 class="h3 fw-bold text-dark mb-3">HSZG Chat App</h1>
-      
-      <div *ngIf="!loggedIn" class="d-grid gap-2">
-        <button (click)="toggleHeader(); setView('login')" class="btn btn-outline-primary">Login</button>
-        <button (click)="toggleHeader(); setView('register')" class="btn btn-outline-secondary">Create Account</button>
-      </div>
-      
-      <div *ngIf="loggedIn" class="d-grid gap-2">
-        <button class="btn btn-success">Join Room</button>
-        <button class="btn btn-success">Create Room</button>
-        <button class="btn btn-danger">Logout</button>
-        <button class="btn btn-secondary">Manage Account</button>
-      </div>
-    </div>
-
-    <div *ngIf="currentView === 'login'" class="bg-white shadow-sm rounded p-4 w-100 max-w-400 text-center">
-      <h2 class="h4 fw-bold text-dark mb-3">Login</h2>
-      <input type="text" placeholder="Username" class="form-control mb-2" [(ngModel)]="username">
-      <input type="password" placeholder="Password" class="form-control mb-3" [(ngModel)]="password">
-      <button class="btn btn-primary w-100" (click)="login()">Login</button>
-    </div>
-
-    <div *ngIf="currentView === 'register'" class="bg-white shadow-sm rounded p-4 w-100 max-w-400 text-center">
-      <h2 class="h4 fw-bold text-dark mb-3">Register</h2>
-      <input type="text" placeholder="Username" class="form-control mb-2" [(ngModel)]="newUsername">
-      <input type="password" placeholder="Password" class="form-control mb-3" [(ngModel)]="newPassword">
-      <button class="btn btn-success w-100" (click)="register()">Create Account</button>
+    <div class="space-y-3">
+      <button (click)="toggleHeader()" class="text-blue-600 font-semibold cursor-pointer hover:underline">Login</button>
+      <button (click)="toggleHeader()" class="text-blue-600 font-semibold cursor-pointer hover:underline">Create Account</button>
     </div>
   </div>
-</ng-container>
+</div>
