@@ -1,3 +1,16 @@
+<header *ngIf="showHeader" class="fixed top-0 left-0 w-full bg-white shadow-md p-4 flex justify-between items-center">
+  <h1 class="text-lg font-bold text-gray-800">HSZG Chat</h1>
+  <nav class="space-x-4">
+    <a routerLink="/" (click)="toggleHeader(false)" class="text-blue-600 hover:underline">Home</a>
+    <a routerLink="/login" class="text-blue-600 hover:underline">Login</a>
+    <a routerLink="/register" class="text-blue-600 hover:underline">Register</a>
+  </nav>
+</header>
+
+<div class="mt-16">
+  <router-outlet></router-outlet>
+</div>
+
 <app-start-page></app-start-page>
 
 
