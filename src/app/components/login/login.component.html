@@ -1,1 +1,11 @@
-<p>login</p>
+
+<div>
+  <h1>login</h1>
+  <div>
+    <input id="usernameLogin" type="text" placeholder="username"><br>
+    <input id="passwordLogin" type="password"  placeholder="password"><br>
+    <button (click)="sendLogin()">login</button>
+    <p *ngIf="logInRequestSent" >{{loginState}}</p>
+  </div>
+
+</div>
