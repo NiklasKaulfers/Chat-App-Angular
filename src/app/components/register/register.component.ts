@@ -64,8 +64,7 @@ export class RegisterComponent {
       const data = await response.json();
 
       if (data.success) {
-        this.userInfo = `Signed in and registered as ${this.userName}`;
-        sessionStorage.setItem("userName", this.userName);
+        this.userInfo = `registered as ${this.userName}`;
       } else {
         this.userInfo = "Server error occurred";
       }
