@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     if (token) {
       this.isLoggedIn = true;
       this.username = localStorage.getItem('username') || 'User';
+    } else {
       this.isLoggedIn = false;
     }
   }
