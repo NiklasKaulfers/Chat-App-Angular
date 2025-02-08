@@ -37,22 +37,20 @@ export class LoginComponent {
     this.logInRequestSent = true;
 
     try {
-      const response = await fetch(
-        "https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username: this.username, password: this.password }),
-        }
-      );
+      const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: this.username, password: this.password }),
+      });
 
       const data = await response.json();
 
-      if (response.ok && data.success && data.body?.token) {
-        localStorage.setItem("token", data.body.token);
+      if (response.ok) {
+        localStorage.setItem("token", data.accessToken);
         localStorage.setItem("username", this.username);
+        localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
       } else {
         this.loginState = "Invalid username or password";
