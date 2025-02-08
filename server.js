@@ -1,11 +1,15 @@
-let express = require('express');
-const {join} = require("node:path");
+const express = require('express');
+const path = require('path');
 
-let app = express();
-app.use(express.static(join(__dirname + '/dist/chat-app-angular')));
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.get("/*", (req, res) => {
-  res.sendFile(join(__dirname + '/dist/chat-app-angular/index.html'));
-})
+app.use(express.static(path.join(__dirname, 'dist', 'chat-app-angular')));
 
-app.listen(process.env.PORT || 8080)
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'chat-app-angular', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
