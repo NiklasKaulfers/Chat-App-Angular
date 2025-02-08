@@ -8,17 +8,10 @@ import {LoginComponent} from '../login/login.component';
   templateUrl: './start-page.component.html',
   imports: [
     NgIf,
-    LoginComponent,
     RouterLink
   ],
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent {
   showHeader: boolean = false;
-
-  constructor(private router: Router) {}
-
-  toggleHeader(show: boolean = true) {
-    this.showHeader = show;
-  }
 }

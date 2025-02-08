@@ -1,0 +1,32 @@
+/* Center the form */
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for input fields */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+}
+
+/* Submit Button */
+.btn-register {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Error Message */
+#userInfo {
+  margin-top: 10px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}

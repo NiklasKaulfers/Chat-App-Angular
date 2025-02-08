@@ -1,11 +1,38 @@
+<div class="container mt-5">
+  <h1 class="text-center">Login</h1>
 
-<div>
-  <h1>login</h1>
-  <div>
-    <input id="usernameLogin" type="text" placeholder="username"><br>
-    <input id="passwordLogin" type="password"  placeholder="password"><br>
-    <button (click)="sendLogin()">login</button>
-    <p *ngIf="logInRequestSent" >{{loginState}}</p>
+  <div class="card p-4 shadow">
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        id="usernameLogin"
+        type="text"
+        class="form-control"
+        placeholder="Enter your username"
+        [(ngModel)]="username"
+      />
+    </div>
+
+    <div class="mb-3 position-relative">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <input
+          id="passwordLogin"
+          [type]="showPassword ? 'text' : 'password'"
+          class="form-control"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
+        <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="sendLogin()">Login</button>
+
+    <p *ngIf="logInRequestSent" class="mt-3 text-center fw-bold text-danger">
+      {{ loginState }}
+    </p>
   </div>
-
 </div>

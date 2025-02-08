@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <h1 class="text-center">Register User</h1>
+
+  <form #registerForm="ngForm" (ngSubmit)="createUser()">
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        name="userName"
+        [(ngModel)]="userName"
+        placeholder="Enter username"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Enter email"
+        type="email"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="mb-3 position-relative">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <input
+          name="passwordFirst"
+          [(ngModel)]="passwordFirst"
+          [type]="showPassword ? 'text' : 'password'"
+          class="form-control"
+          placeholder="Enter password"
+          required
+          minlength="6"
+        />
+        <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3 position-relative">
+      <label class="form-label">Confirm Password</label>
+      <div class="input-group">
+        <input
+          name="passwordSecond"
+          [(ngModel)]="passwordSecond"
+          [type]="showPassword ? 'text' : 'password'"
+          class="form-control"
+          placeholder="Confirm password"
+          required
+          minlength="6"
+        />
+        <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-register w-100" [disabled]="registerForm.invalid || buttonPressed">
+      Register
+    </button>
+
+    <p id="userInfo">{{ userInfo }}</p>
+  </form>
+</div>

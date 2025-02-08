@@ -1,24 +1,15 @@
-import {ApplicationConfig, Component, Injectable} from '@angular/core';
-import {provideRouter, RouterLink, RouterOutlet, Routes} from '@angular/router';
-import {StartPageComponent} from './components/start-page/start-page.component';
-import {HeaderComponent} from './components/header/header.component';
-import {NgIf} from '@angular/common';
-import {LoginComponent} from './components/login/login.component';
-import {HttpClient} from '@angular/common/http';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import { routes } from './app.routes';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, StartPageComponent, NgIf, RouterLink, HeaderComponent],
+  standalone: true,
+  imports: [RouterModule, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'chat-app-ng-frontend';
-
-}
-
-@Injectable()
-export class ConfigService {
-  constructor(private http: HttpClient) {
-  }
+  title = 'my-angular-app';
 }
