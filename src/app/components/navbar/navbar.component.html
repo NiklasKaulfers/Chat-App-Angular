@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">HSZG Chat App</a>
-    <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="navbarNav" aria-expanded="!isNavbarCollapsed" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">HSZG Chat App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarNav">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+
+        <!-- Show if NOT Logged In -->
         <ng-container *ngIf="!isLoggedIn">
           <li class="nav-item">
             <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
@@ -14,20 +18,24 @@
             <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
           </li>
         </ng-container>
+
+        <!-- Show if Logged In -->
         <ng-container *ngIf="isLoggedIn">
-          <li ngbDropdown class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-              Menu
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="roomDropdown" role="button" data-bs-toggle="dropdown" mdbDropdowToggle
+               aria-expanded="false">
+              Rooms
             </a>
-            <ul ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+            <ul class="dropdown-menu " aria-labelledby="roomDropdown">
               <li>
-                <a routerLink="/rooms" class="dropdown-item">Join</a>
+                <a routerLink="/rooms" class="dropdown-item">Join a Room</a>
               </li>
               <li>
-                <a routerLink="/createRoom" class="dropdown-item">Create</a>
+                <a routerLink="/createRoom" class="dropdown-item">Create a Room</a>
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <span class="nav-link text-muted">Welcome, {{ username }}</span>
           </li>
@@ -35,6 +43,7 @@
             <button class="btn btn-link nav-link" (click)="logout()">Logout</button>
           </li>
         </ng-container>
+
       </ul>
     </div>
   </div>
