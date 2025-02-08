@@ -5,9 +5,15 @@
     <h1 class="display-4 text-primary mb-4">HSZG Chat App</h1>
 
 
-    <div class="mb-4">
-      <a routerLink="/login" class="btn btn-primary btn-lg me-3">Login</a>
-      <a routerLink="/register" class="btn btn-outline-primary btn-lg">Create an Account</a>
+    <div *ngIf="!loggedIn" class="mb-4">
+      <a routerLink="/login" class="btn btn-primary btn-lg me-3">login</a>
+      <a routerLink="/register" class="btn btn-outline-primary btn-lg">create account</a>
+    </div>
+
+    <div *ngIf="loggedIn" class="mb-4" >
+      <a routerLink="/joinRoom" class="btn btn-primary btn-lg me-3">join room</a>
+      <a routerLink="/createRoom" class="btn btn-primary btn-lg me-3">create room</a>
+      <a (click)="logout()" class="btn btn-primary btn-lg me-3">logout</a>
     </div>
 
   </div>

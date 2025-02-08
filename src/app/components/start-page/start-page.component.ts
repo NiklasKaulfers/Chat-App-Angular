@@ -13,4 +13,10 @@ import {NgIf} from '@angular/common';
 })
 export class StartPageComponent {
   showHeader: boolean = false;
+  loggedIn: boolean = false;
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
+  }
 }
