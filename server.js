@@ -3,7 +3,7 @@ const path = require("path");
 
 const app = express();
 
-const distPath = path.join(__dirname, "dist/chat-app-ng-frontend");
+const distPath = path.join(__dirname, "dist/chat-app-ng-frontend/browser");
 app.use(express.static(distPath));
 
 app.get("/*", (req, res) => {
