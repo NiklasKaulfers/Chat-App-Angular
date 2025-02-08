@@ -15,6 +15,7 @@ import {NgIf} from '@angular/common';
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string = '';
+  isNavbarCollapsed: boolean = true;
 
   ngOnInit() {
     this.checkLoginStatus();
