@@ -18,7 +18,7 @@ export class RoomService {
     const token = sessionStorage.getItem('jwt_token');
     if (!token) {
       console.error('Error getting the token.');
-      return new Observable(); // Return an empty observable if there's no token
+      return new Observable();
     }
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
