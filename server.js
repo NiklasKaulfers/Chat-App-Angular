@@ -1,9 +1,11 @@
 let express = require('express');
-let app = express();
-app.use(express.static(__dirname + '/dist/chat-app-angular'));
+const {join} = require("node:path");
 
-app.get("*", (req, res) => {
-  res.sendFile(__dirname + '/dist/chat-app-angular/index.html');
+let app = express();
+app.use(express.static(join(__dirname + '/dist/chat-app-angular')));
+
+app.get("/*", (req, res) => {
+  res.sendFile(join(__dirname + '/dist/chat-app-angular/index.html'));
 })
 
 app.listen(process.env.PORT || 8080)
