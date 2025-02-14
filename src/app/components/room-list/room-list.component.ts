@@ -1,65 +1,78 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from '../../services/room.service';
 import { Router } from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-room-list',
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.css'],
+  imports: [
+    NgForOf,
+    NgIf
+  ]
 })
 export class RoomListComponent implements OnInit {
   rooms: any[] = [];
+  errorCount: number = 0;
 
-  constructor(private roomService: RoomService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.fetchRooms();
+  async ngOnInit(): Promise<void> {
+    await this.fetchRooms();
   }
 
   /** Fetch rooms from the API */
-  fetchRooms(): void {
-    this.roomService.fetchRooms().subscribe(
-      (data) => {
-        this.rooms = data.rooms || [];
-      },
-      (error) => {
-        console.error('Error fetching rooms:', error);
+  async fetchRooms(): Promise<void> {
+    if (!process.env["BACKEND_URL"]){
+      console.error("FATAL: Backend url is missing");
+      return;
+    }
+    const response = await fetch(process.env["BACKEND_URL"] + "/rooms", {
+      method: "GET"
+    });
+    if (!response.ok) {
+      console.error("FATAL: Unable to get room list.");
+      if (this.errorCount < 3){
+        await this.fetchRooms();
+        this.errorCount ++;
       }
-    );
+      return;
+    }
+    const responseItems = await response.json();
+    this.rooms = responseItems.rooms;
   }
 
-  /** Handle joining a room */
-  joinRoom(room: any): void {
-    if (room.has_password === 'True') {
-      this.promptForPin(room.id);
-    } else {
-      this.roomService.joinRoomWithoutPin(room.id).subscribe(
-        (response) => {
-          sessionStorage.setItem('room_token', response.roomToken);
-          sessionStorage.setItem('room', room.id);
-          this.router.navigate(['/in-room']);
-        },
-        (error) => {
-          console.error('Error joining room:', error);
-        }
-      );
+  async joinRoom(room: any) {
+    if (!process.env["BACKEND_URL"]){
+      console.error("FATAL: Backend url is missing");
+      return;
     }
-  }
-
-  /** Prompt user for PIN */
-  promptForPin(roomId: number): void {
-    const pin = prompt('Enter Room PIN:');
-    if (pin) {
-      this.roomService.joinRoomWithPin(roomId, pin).subscribe(
-        (response) => {
-          sessionStorage.setItem('room_token', response.roomToken);
-          sessionStorage.setItem('room', roomId.toString());
-          this.router.navigate(['/in-room']);
-        },
-        (error) => {
-          console.error('Error joining room:', error);
-        }
-      );
+    const token: string | null = localStorage.getItem("token");
+    if (!token){
+      console.error("ERROR: User not logged in.");
+      return;
     }
+    let pin = "";
+    if (room.has_Pasword){
+      const passwordHtmlComponent = document.getElementById(room.id)
+      if (!passwordHtmlComponent){
+        console.error("ERROR: Component creation error.");
+        return;
+      }
+      pin = passwordHtmlComponent.innerText;
+    }
+    const response = await fetch(process.env["BACKEND_URL"] + "/rooms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({pin: pin})
+    });
+    if (!response.ok) {
+      console.error("Error: Unable to get room list.");
+      return;
+    }
+    const responseItem = await response.json();
+    localStorage.setItem("room_token", responseItem.roomToken);
+    console.log("success");
   }
 }
