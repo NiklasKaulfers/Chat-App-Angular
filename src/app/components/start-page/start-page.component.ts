@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {NgIf} from '@angular/common';
 
@@ -11,12 +11,20 @@ import {NgIf} from '@angular/common';
   ],
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent {
+export class StartPageComponent implements OnInit {
   showHeader: boolean = false;
   loggedIn: boolean = false;
+
 
   logout() {
     localStorage.clear();
     window.location.reload();
+  }
+
+  ngOnInit(): void {
+    if (localStorage.getItem("token")) {
+      this.loggedIn = true;
+    }
+    this.loggedIn = false;
   }
 }
