@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
@@ -21,11 +20,8 @@ export class RoomListComponent implements OnInit {
 
   /** Fetch rooms from the API */
   async fetchRooms(): Promise<void> {
-    if (!process.env["BACKEND_URL"]){
-      console.error("FATAL: Backend url is missing");
-      return;
-    }
-    const response = await fetch(process.env["BACKEND_URL"] + "/rooms", {
+
+    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
       method: "GET"
     });
     if (!response.ok) {
@@ -41,10 +37,6 @@ export class RoomListComponent implements OnInit {
   }
 
   async joinRoom(room: any) {
-    if (!process.env["BACKEND_URL"]){
-      console.error("FATAL: Backend url is missing");
-      return;
-    }
     const token: string | null = localStorage.getItem("token");
     if (!token){
       console.error("ERROR: User not logged in.");
@@ -59,7 +51,7 @@ export class RoomListComponent implements OnInit {
       }
       pin = passwordHtmlComponent.innerText;
     }
-    const response = await fetch(process.env["BACKEND_URL"] + "/rooms", {
+    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
