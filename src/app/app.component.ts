@@ -11,5 +11,5 @@ import { routes } from './app.routes';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'my-angular-app';
+  title = 'HSZG Chat-App';
 }

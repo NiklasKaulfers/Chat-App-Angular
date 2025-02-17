@@ -11,7 +11,7 @@ import {NgIf} from '@angular/common';
   ],
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent implements OnInit {
+export class StartPageComponent {
   showHeader: boolean = false;
   loggedIn: boolean = false;
 

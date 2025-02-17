@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Text Display</h5>
+
+      <!-- Textarea with better styling -->
+      <textarea class="form-control mb-3" rows="5" readonly>
+        Here display text
+      </textarea>
+
+      <!-- Input and Button -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter text" [(ngModel)]="userInput">
+        <button class="btn btn-primary" (click)="submitText()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
