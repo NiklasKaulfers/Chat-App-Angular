@@ -21,10 +21,12 @@ export class StartPageComponent {
     window.location.reload();
   }
 
-  ngOnInit(): void {
-    if (localStorage.getItem("token")) {
-      this.loggedIn = true;
-    }
-    this.loggedIn = false;
+  ngOnInit() {
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus() {
+    const token = localStorage.getItem('token');
+    this.loggedIn = !!token;
   }
 }
