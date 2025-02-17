@@ -60,7 +60,7 @@ export class CreateRoomComponent {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data.ok) {
         this.creationFeedback = `Created room: ${this.title}`;
       } else {
         this.creationFeedback = "Server error occurred";
