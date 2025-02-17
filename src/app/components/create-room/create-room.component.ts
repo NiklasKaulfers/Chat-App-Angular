@@ -48,7 +48,10 @@ export class CreateRoomComponent {
         "https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
           body: JSON.stringify({
             pin: pin,
             display_name: `${this.title}`,
