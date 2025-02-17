@@ -53,7 +53,7 @@ export class RoomListComponent implements OnInit {
       }
       pin = passwordHtmlComponent.innerText;
     }
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
+    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/" + room.id, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
