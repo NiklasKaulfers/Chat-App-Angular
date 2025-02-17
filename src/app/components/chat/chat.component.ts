@@ -4,6 +4,7 @@ import { Amplify } from 'aws-amplify';
 import { events } from 'aws-amplify/data';
 import {NgForOf} from '@angular/common';
 
+
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -24,14 +25,16 @@ export class ChatComponent implements OnInit {
   async initializeChat() {
     try {
       Amplify.configure({
-        "API": {
-          "Events": {
-            "endpoint": "https://jleaiewm4jdsrd2wm2coiwuwnu.appsync-api.eu-central-1.amazonaws.com/event",
-            "region": "eu-central-1",
-            "defaultAuthMode": "lambda"
+          "API": {
+            "Events": {
+              "endpoint": "https://jleaiewm4jdsrd2wm2coiwuwnu.appsync-api.eu-central-1.amazonaws.com/event",
+              "region": "eu-central-1",
+              "defaultAuthMode": "apiKey",
+              "apiKey": "da2-ww6xpwggbzbcbawwybbfc2lveq"
+            }
           }
         }
-      });
+      );
 
       const room = localStorage.getItem("room") || "default-room";
       this.channel = await events.connect(`/default/${room}`);
