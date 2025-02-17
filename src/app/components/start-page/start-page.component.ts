@@ -28,7 +28,9 @@ export class StartPageComponent implements OnInit {
 
   checkLoginStatus() {
     const token = localStorage.getItem('token');
-    window.location.reload();
-    this.loggedIn = !!token;
+    if (!!token != this.loggedIn){
+      window.location.reload();
+      this.loggedIn = !!token;
+    }
   }
 }
