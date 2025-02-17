@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgClass} from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-create-room',
@@ -29,15 +29,18 @@ export class CreateRoomComponent {
 
     if (!this.title) {
       this.creationFeedback = "Needs a title";
+      this.buttonPressed = false;
       return;
     }
 
     let pin = "";
-    if ((this.passwordFirst || this.passwordSecond) && this.passwordFirst === this.passwordSecond) {
+    if (this.passwordFirst || this.passwordSecond) {
+      if (this.passwordFirst !== this.passwordSecond) {
+        this.creationFeedback = "Passwords don't match";
+        this.buttonPressed = false;
+        return;
+      }
       pin = this.passwordFirst;
-    } else {
-      this.creationFeedback = "Passwords don't match";
-      return;
     }
 
     try {
@@ -56,7 +59,7 @@ export class CreateRoomComponent {
       const data = await response.json();
 
       if (data.success) {
-        this.creationFeedback = `created room: ${this.title}`;
+        this.creationFeedback = `Created room: ${this.title}`;
       } else {
         this.creationFeedback = "Server error occurred";
       }
@@ -64,5 +67,7 @@ export class CreateRoomComponent {
       this.creationFeedback = "Network error occurred";
       console.error("Error:", error);
     }
+
+    this.buttonPressed = false;
   };
 }
