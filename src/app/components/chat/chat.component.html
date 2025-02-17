@@ -1,17 +1,16 @@
 <div class="container mt-4">
   <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Text Display</h5>
+    <div class="card-body chat-container">
+      <h5 class="card-title">Chat Room</h5>
 
-      <!-- Textarea with better styling -->
-      <textarea class="form-control mb-3" rows="5" readonly>
-        Here display text
-      </textarea>
-
-      <!-- Input and Button -->
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Enter text" [(ngModel)]="userInput">
-        <button class="btn btn-primary" (click)="submitText()">Submit</button>
+      <div class="chat-box">
+        <div *ngFor="let msg of messages" class="chat-message">
+          <strong>{{ msg.sender }}:</strong> {{ msg.message }}
+        </div>
+      </div>
+      <div class="d-flex mt-3">
+        <input type="text" class="form-control me-2" placeholder="Type a message..." [(ngModel)]="userInput">
+        <button class="btn btn-primary" (click)="submitText()">Send</button>
       </div>
     </div>
   </div>
