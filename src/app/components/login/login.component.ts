@@ -23,7 +23,6 @@ export class LoginComponent {
 
   constructor(private router: Router) {}
 
-  // Toggle password visibility
   togglePasswordVisibility = () => {
     this.showPassword = !this.showPassword;
   };

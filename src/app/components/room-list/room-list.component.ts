@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-room-list',
@@ -11,6 +12,7 @@ import {NgForOf, NgIf} from '@angular/common';
   ]
 })
 export class RoomListComponent implements OnInit {
+  constructor(private router: Router) {}
   rooms: any[] = [];
   errorCount: number = 0;
 
@@ -66,5 +68,6 @@ export class RoomListComponent implements OnInit {
     const responseItem = await response.json();
     localStorage.setItem("room_token", responseItem.roomToken);
     console.log("success");
+    await this.router.navigate(['/chat']);
   }
 }
