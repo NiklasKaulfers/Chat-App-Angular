@@ -33,14 +33,16 @@ export class CreateRoomComponent {
       return;
     }
 
-    let pin = "";
-    if (this.passwordFirst || this.passwordSecond) {
-      if (this.passwordFirst !== this.passwordSecond) {
-        this.creationFeedback = "Passwords don't match";
-        this.buttonPressed = false;
-        return;
-      }
-      pin = this.passwordFirst;
+    if (this.passwordFirst !== this.passwordSecond){
+      this.creationFeedback = "Password must match";
+      return;
+    }
+    let pin = this.passwordFirst;
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      this.creationFeedback = "Please log in.";
+      return;
     }
 
     try {
@@ -50,7 +52,7 @@ export class CreateRoomComponent {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({
             pin: pin,
