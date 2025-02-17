@@ -46,20 +46,17 @@ export class CreateRoomComponent {
     }
 
     try {
-      const response = await fetch(
-        "https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            pin: pin,
-            display_name: `${this.title}`,
-          }),
-        }
-      );
+      const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          pin: pin,
+          display_name: this.title
+        })
+      });
 
       const data = await response.json();
 
