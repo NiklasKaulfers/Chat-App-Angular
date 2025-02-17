@@ -22,7 +22,7 @@ export class CreateRoomComponent {
 
   togglePasswordVisibility = () => {
     this.showPassword = !this.showPassword;
-  };
+  }
 
   createRoom = async (): Promise<void> => {
     this.buttonPressed = true;
@@ -37,7 +37,7 @@ export class CreateRoomComponent {
       this.creationFeedback = "Password must match";
       return;
     }
-    let pin = this.passwordFirst;
+    const pin = this.passwordFirst;
 
     const token = localStorage.getItem("token");
     if (!token) {
@@ -63,7 +63,7 @@ export class CreateRoomComponent {
       if (data.ok) {
         this.creationFeedback = `Created room: ${this.title}`;
       } else {
-        this.creationFeedback = "Server error occurred";
+        this.creationFeedback = data.error;
       }
     } catch (error) {
       this.creationFeedback = "Network error occurred";
@@ -71,5 +71,5 @@ export class CreateRoomComponent {
     }
 
     this.buttonPressed = false;
-  };
+  }
 }
