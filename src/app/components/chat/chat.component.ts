@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Amplify } from 'aws-amplify';
-import { events } from 'aws-amplify/data';
 import {NgForOf} from '@angular/common';
-
+import {Socket} from 'ngx-socket-io';
+import {Router} from '@angular/router';
+import {io} from 'socket.io-client';
 
 @Component({
   selector: 'app-chat',
@@ -13,73 +13,45 @@ import {NgForOf} from '@angular/common';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  constructor(private router: Router) { }
   userInput: string = '';
   messages: { sender: string; message: string }[] = [];
   channel: any;
+  user: string | null = localStorage.getItem('user');
+  roomToken: string | null = localStorage.getItem('roomToken');
   room: string | null = localStorage.getItem('room');
 
-  ngOnInit(): void {
-    this.initializeChat();
-  }
 
-  async initializeChat() {
-    try {
-      Amplify.configure({
-          "API": {
-            "Events": {
-              "endpoint": "https://jleaiewm4jdsrd2wm2coiwuwnu.appsync-api.eu-central-1.amazonaws.com/event",
-              "region": "eu-central-1",
-              "defaultAuthMode": "apiKey",
-              "apiKey": "da2-ww6xpwggbzbcbawwybbfc2lveq"
-            }
-          }
-        }
-      );
-
-      const room = localStorage.getItem("room") || "default-room";
-      this.channel = await events.connect(`/default/${room}`);
-
-      this.channel.subscribe({
-        error: (error: any) => {
-          this.displayMessage("Server", "Subscription failed.");
-        },
-        next: (data: any) => {
-          this.displayMessage(data.sender, data.message);
-        }
-      });
-    } catch (error) {
-      console.error("Chat connection failed:", error);
-    }
-  }
-
-  async submitText() {
-    if (!this.userInput.trim()) return;
-
-    const sender: string | null= localStorage.getItem("user");
-
-    if (!sender) {
-      this.displayMessage("Server", "Please log in.")
+  sendMessage = () => {
+    if (!this.user){
+      this.displayMessage("Server", "Please log in.");
       return;
     }
-
-    const messageData = {
-      sender: sender,
-      message: this.userInput
-    };
-
-    this.messages.push(messageData);
-    this.userInput = '';
-    if (!this.room){
+    if (!this.roomToken){
+      this.displayMessage("Server", "Please log into the room.");
       return;
     }
-    try {
-      await this.channel.post(`/default/${this.room}`,[messageData]);
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
+    socket.emit('message', JSON.stringify({
+      token: this.roomToken,
+      message: this.userInput,
+      user: this.user
+    }))
   }
+
 
   displayMessage(sender: string, message: string) {
     this.messages.push({ sender, message });
   }
+
+  async ngOnInit(): Promise<void> {
+    if (!this.user) {
+      await this.router.navigate(["/login"]);
+      return;
+    }
+    socket.emit("ack", {
+      token: this.roomToken,
+    })
+  }
 }
+
+const socket = io("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com")
