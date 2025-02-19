@@ -14,7 +14,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent implements OnInit, OnDestroy {
-  showHeader: boolean = false;
   loggedIn: boolean = false;
   private authCheckInterval: any; // Interval reference
 
