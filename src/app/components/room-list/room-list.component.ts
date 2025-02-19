@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 import { Router } from '@angular/router';
-import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-room-list',

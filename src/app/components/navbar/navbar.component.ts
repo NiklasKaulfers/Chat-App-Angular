@@ -31,11 +31,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.clear();
     this.isLoggedIn = false;
     this.username = '';
+    window.location.reload();
     this.router.navigate(['/start']);
+
   }
   constructor(private router: Router) {}
 }
