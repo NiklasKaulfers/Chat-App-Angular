@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Available Chat Rooms</h2>
+  <h2>Available Rooms ownded by {{user}}</h2>
   <div *ngIf="rooms.length === 0" class="text-muted">No rooms found.</div>
 
   <div *ngFor="let room of rooms" class="room card p-3 mb-2">

@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 export class DeleteRoomComponent implements OnInit{
   rooms: Room[] = [];
   errorCount: number = 0;
+  user:  string = localStorage.getItem("username") ?? "";
 
   constructor(private router: Router) {
   }

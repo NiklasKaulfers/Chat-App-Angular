@@ -1,20 +1,21 @@
-<div  class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-light">
-  <div  class="bg-white shadow-lg rounded-lg p-5 w-100 w-md-75 w-lg-50 text-center">
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-light">
+  <div class="bg-white shadow-lg rounded-4 p-5 w-100" style="max-width: 500px;">
 
+    <!-- App Title -->
+    <h1 class="display-5 text-primary fw-bold mb-4 text-center">HSZG Chat App</h1>
 
-    <h1 class="display-4 text-primary mb-4">HSZG Chat App</h1>
-
-
-    <div *ngIf="!loggedIn" class="mb-4">
-      <a routerLink="/login" class="btn btn-primary btn-lg me-3">login</a>
-      <a routerLink="/register" class="btn btn-outline-primary btn-lg">create account</a>
+    <!-- Show when NOT logged in -->
+    <div *ngIf="!loggedIn" class="text-center">
+      <a routerLink="/login" class="btn btn-primary btn-lg w-100 mb-3">Login</a>
+      <a routerLink="/register" class="btn btn-outline-primary btn-lg w-100">Create Account</a>
     </div>
 
-    <div *ngIf="loggedIn" class="mb-4" >
-      <a routerLink="/joinRoom" class="btn btn-outline-primary btn-lg">join room</a>
-      <a routerLink="/createRoom" class="btn btn-outline-primary btn-lg">create room</a>
-      <a routerLink="/deleteRoom" class="btn btn-outline-primary btn-lg">delete room</a>
-      <a (click)="logout()" class="btn btn-outline-primary btn-lg">logout</a>
+    <!-- Show when logged in -->
+    <div *ngIf="loggedIn" class="text-center">
+      <a routerLink="/joinRoom" class="btn btn-outline-primary btn-lg w-100 mb-2">Join Room</a>
+      <a routerLink="/createRoom" class="btn btn-outline-primary btn-lg w-100 mb-2">Create Room</a>
+      <a routerLink="/deleteRoom" class="btn btn-outline-primary btn-lg w-100 mb-2">Delete Room</a>
+      <a (click)="logout()" class="btn btn-danger btn-lg w-100">Logout</a>
     </div>
 
   </div>
