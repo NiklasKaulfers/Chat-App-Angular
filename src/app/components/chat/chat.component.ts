@@ -19,17 +19,13 @@ export class ChatComponent implements OnInit {
   userInput: string = '';
   messages: { sender: string; message: string }[] = [];
   channel: any;
-  user: string | null = localStorage.getItem('user');
+  user: string | null = localStorage.getItem('username');
   roomToken: string | null = localStorage.getItem('roomToken');
   room: string | null = localStorage.getItem('room');
-  socket = io("wss://echo.websocket.org", {
-    transports: ["websocket"],
-  });
 
-  // socket = io("wss://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
-  //   transports: ["websocket"],
-  //   reconnectionAttempts: 5
-  // });
+   socket = io("wss://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
+     transports: ["websocket"],
+   });
 
   sendMessage = () => {
     if (!this.user){
