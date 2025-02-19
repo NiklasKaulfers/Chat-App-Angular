@@ -9,8 +9,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   templateUrl: './start-page.component.html',
   imports: [
     NgIf,
-    RouterLink,
-    NavbarComponent
+    RouterLink
   ],
   styleUrls: ['./start-page.component.css']
 })
