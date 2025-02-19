@@ -57,7 +57,7 @@ export class DeleteRoomComponent implements OnInit{
       }
     });
     if (response.status === 200){
-
+      window.location.reload();
     }
   }
 

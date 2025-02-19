@@ -1,12 +1,17 @@
 <div class="container mt-4">
-  <h2>Available Rooms ownded by {{user}}</h2>
+  <h2 class="mb-4">Rooms owned by {{ user }}</h2>
+
   <div *ngIf="rooms.length === 0" class="text-muted">No rooms found.</div>
 
-  <div *ngFor="let room of rooms" class="room card p-3 mb-2">
-    <h3>{{ room.display_name }}</h3>
-    <p>ID: {{ room.id }}</p>
-    <p>Creator: {{ room.creator }}</p>
-    <p>hasPassword: {{room.has_password}}</p>
-    <button class="btn btn-primary" (click)="deleteRoom(room)">Join Room</button>
+  <div class="row">
+    <div *ngFor="let room of rooms" class="col-12 col-md-6 col-lg-3 mb-4">
+      <div class="room card shadow-sm p-3 h-100">
+        <h3 class="text-primary">{{ room.display_name }}</h3>
+        <p><strong>ID:</strong> {{ room.id }}</p>
+        <p><strong>Creator:</strong> {{ room.creator }}</p>
+        <p><strong>Has Password:</strong> {{ room.has_password }}</p>
+        <button class="btn btn-danger w-100 mt-auto" (click)="deleteRoom(room)">Delete this room</button>
+      </div>
+    </div>
   </div>
 </div>
