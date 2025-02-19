@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit {
   user: string | null = localStorage.getItem('user');
   roomToken: string | null = localStorage.getItem('roomToken');
   room: string | null = localStorage.getItem('room');
-  socket = io("ws://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
+  socket = io("wss://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
     transports: ["websocket"],
     reconnectionAttempts: 5
   });
