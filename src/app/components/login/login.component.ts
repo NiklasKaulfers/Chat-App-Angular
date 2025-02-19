@@ -20,7 +20,7 @@ export class LoginComponent {
   password: string = "";
   logInRequestSent: boolean = false;
   loginState: string = "";
-  showPassword: boolean = false; // NEW: Password visibility toggle
+  showPassword: boolean = false;
 
   constructor(private router: Router) {}
 
