@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import {NgForOf} from '@angular/common';
 import {Router} from '@angular/router';
 import {io, Socket} from 'socket.io-client';
+import {environment} from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +22,7 @@ export class ChatComponent implements OnInit {
   user: string | null = localStorage.getItem('user');
   roomToken: string | null = localStorage.getItem('roomToken');
   room: string | null = localStorage.getItem('room');
-  socket = io("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com");
+  socket = io("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com:" + environment.port);
 
   sendMessage = () => {
     if (!this.user){
