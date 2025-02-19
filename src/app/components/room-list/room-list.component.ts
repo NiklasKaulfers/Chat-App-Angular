@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 import { Router } from '@angular/router';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-room-list',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class RoomListComponent implements OnInit {
   constructor(private router: Router) {}
-  rooms: any[] = [];
+  rooms: Room[] = [];
   errorCount: number = 0;
 
   async ngOnInit(): Promise<void> {
@@ -38,14 +39,14 @@ export class RoomListComponent implements OnInit {
     this.rooms = responseItems.rooms;
   }
 
-  async joinRoom(room: any) {
+  async joinRoom(room: Room) {
     const token: string | null = localStorage.getItem("token");
     if (!token){
       console.error("ERROR: User not logged in.");
       return;
     }
     let pin = "";
-    if (room.has_Pasword){
+    if (room.has_password){
       const passwordHtmlComponent = document.getElementById(room.id)
       if (!passwordHtmlComponent){
         console.error("ERROR: Component creation error.");
@@ -70,4 +71,37 @@ export class RoomListComponent implements OnInit {
     console.log("success");
     await this.router.navigate(['/chat']);
   }
+
+  userIsCreator(creator: string): boolean {
+    if (!localStorage.getItem("username")){
+      return false;
+    }
+    return creator === localStorage.getItem("username");
+
+  }
+
+  async deleteRoom(room: Room) {
+
+    const token: string | null = localStorage.getItem("token");
+    if (!token){
+      console.error("ERROR: User not logged in.");
+      return;
+    }
+    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/" + room.id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    if (response.status === 200){
+
+    }
+  }
+}
+interface Room {
+  id: string;
+  display_name: string;
+  creator: string;
+  has_password: boolean
 }
