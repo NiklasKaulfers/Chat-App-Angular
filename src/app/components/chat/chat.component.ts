@@ -23,8 +23,8 @@ export class ChatComponent implements OnInit {
   roomToken: string | null = localStorage.getItem('roomToken');
   room: string | null = localStorage.getItem('room');
 
-   socket = io("wss://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
-     transports: ["websocket"],
+   socket = io("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
+     transports: ["websocket", "polling"],
    });
 
   sendMessage = () => {
