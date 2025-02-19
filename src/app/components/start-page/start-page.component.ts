@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
   ],
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent {
+export class StartPageComponent implements OnInit{
   loggedIn: boolean = this.checkAuthState();
 
   logout() {
@@ -23,5 +23,9 @@ export class StartPageComponent {
   checkAuthState(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
+  }
+
+  ngOnInit(): void {
+    window.location.reload();
   }
 }
