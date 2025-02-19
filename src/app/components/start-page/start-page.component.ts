@@ -1,36 +1,51 @@
-import {Component, OnInit} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {NgIf} from '@angular/common';
-import {NavbarComponent} from '../navbar/navbar.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-start-page',
+  standalone: true,
   templateUrl: './start-page.component.html',
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
+    NavbarComponent
   ],
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent implements OnInit {
+export class StartPageComponent implements OnInit, OnDestroy {
   showHeader: boolean = false;
   loggedIn: boolean = false;
-
+  private authCheckInterval: any; // Interval reference
 
   logout() {
     localStorage.clear();
     window.location.reload();
   }
 
-  ngOnInit() {
-    this.checkLoginStatus();
+  checkAuthState() {
+    const token = localStorage.getItem('token');
+    const isLoggedIn = !!token;
+
+    if (this.loggedIn !== isLoggedIn) {
+      this.loggedIn = isLoggedIn;
+      window.location.reload();
+    }
   }
 
-  checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    if (!!token != this.loggedIn){
-      window.location.reload();
-      this.loggedIn = !!token;
+  ngOnInit(): void {
+    this.checkAuthState();
+
+    // Check for changes every 2 seconds
+    this.authCheckInterval = setInterval(() => {
+      this.checkAuthState();
+    }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.authCheckInterval) {
+      clearInterval(this.authCheckInterval);
     }
   }
 }
