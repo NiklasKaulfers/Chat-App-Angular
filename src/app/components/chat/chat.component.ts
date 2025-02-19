@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
       this.displayMessage("Server", "Please log into the room.");
       return;
     }
-    this.socket.emit('message', JSON.stringify({
+    this.socket.emit('message', ({
       token: this.roomToken,
       message: this.userInput,
       user: this.user
@@ -43,7 +43,24 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.socket.on("connect", () => {
+      console.log("Connected to WebSocket server");
+    });
+
+    this.socket.on("message", (data: string) => {
+      try {
+        const parsedData = JSON.parse(data);
+        this.displayMessage(parsedData.user, parsedData.message);
+      } catch (e) {
+        console.error("Error parsing message data", e);
+      }
+    });
+
+    this.socket.on("disconnect", () => {
+      console.log("Disconnected from WebSocket server");
+    });
   }
+
 }
 
 
