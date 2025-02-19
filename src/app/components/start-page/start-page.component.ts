@@ -24,6 +24,4 @@ export class StartPageComponent {
     const token = localStorage.getItem('token');
     return !!token;
   }
-
-
 }

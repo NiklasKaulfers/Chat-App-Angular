@@ -30,6 +30,9 @@
     </div>
 
     <button class="btn btn-primary w-100" (click)="sendLogin()">Login</button>
+    <p>
+      <a routerLink="forgotPassword">forgot password</a>
+    </p>
 
     <p *ngIf="logInRequestSent" class="mt-3 text-center fw-bold text-danger">
       {{ loginState }}
