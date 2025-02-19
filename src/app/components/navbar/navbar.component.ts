@@ -36,7 +36,6 @@ export class NavbarComponent implements OnInit {
     this.username = '';
     window.location.reload();
     this.router.navigate(['/start']);
-
   }
   constructor(private router: Router) {}
 }
