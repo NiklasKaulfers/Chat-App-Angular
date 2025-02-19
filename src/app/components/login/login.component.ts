@@ -52,6 +52,7 @@ export class LoginComponent {
         localStorage.setItem("username", this.username);
         localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
+        window.location.reload();
         await this.router.navigate(['/start']);
       } else {
         this.loginState = "Invalid username or password";

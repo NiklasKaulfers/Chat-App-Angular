@@ -11,9 +11,10 @@
     </div>
 
     <div *ngIf="loggedIn" class="mb-4" >
-      <a routerLink="/joinRoom" class="btn btn-primary btn-lg me-3">join room</a>
-      <a routerLink="/createRoom" class="btn btn-primary btn-lg me-3">create room</a>
-      <a (click)="logout()" class="btn btn-primary btn-lg me-3">logout</a>
+      <a routerLink="/joinRoom" class="btn btn-outline-primary btn-lg">join room</a>
+      <a routerLink="/createRoom" class="btn btn-outline-primary btn-lg">create room</a>
+      <a routerLink="/deleteRoom" class="btn btn-outline-primary btn-lg">delete room</a>
+      <a (click)="logout()" class="btn btn-outline-primary btn-lg">logout</a>
     </div>
 
   </div>
