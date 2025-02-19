@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
   ],
   styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent implements OnInit{
+export class StartPageComponent{
   loggedIn: boolean = this.checkAuthState();
 
   logout() {
@@ -25,7 +25,4 @@ export class StartPageComponent implements OnInit{
     return !!token;
   }
 
-  ngOnInit(): void {
-    window.location.reload();
-  }
 }
