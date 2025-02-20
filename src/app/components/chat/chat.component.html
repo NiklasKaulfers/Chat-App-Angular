@@ -1,36 +1,30 @@
-<div class="chat-container">
-  <div class="card shadow h-100 border-0">
-    <div class="card-body p-0 d-flex flex-column chat-body">
-      <div class="chat-box flex-grow-1 p-2 overflow-auto" #chatBox>
-        <div *ngFor="let msg of messages"
-             class="chat-message mb-2 p-2 rounded"
-             [ngClass]="{'sender-message': msg.sender === user, 'received-message': msg.sender !== user, 'system-message': msg.sender === 'Server'}">
-          <div class="message-header mb-1">
-            <strong>{{ msg.sender }}</strong>
-            <small *ngIf="msg.timestamp" class="text-muted ms-2">{{ msg.timestamp | date:'shortTime' }}</small>
-          </div>
-          <div class="message-content">{{ msg.message }}</div>
-        </div>
+<div class="chat-content">
+  <div class="messages-container" #chatBox>
+    <div *ngFor="let msg of messages"
+         class="chat-message"
+         [ngClass]="{'sender-message': msg.sender === user, 'received-message': msg.sender !== user, 'system-message': msg.sender === 'Server'}">
+      <div class="message-header">
+        <strong>{{ msg.sender }}</strong>
+        <small *ngIf="msg.timestamp" class="message-time">{{ msg.timestamp | date:'shortTime' }}</small>
       </div>
-
-      <div class="p-1 ms-2" *ngIf="someoneTyping">
-        <small class="text-muted fst-italic">Someone is typing...</small>
-      </div>
-
-      <div class="chat-input p-2 border-top">
-        <div class="input-group">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Type a message..."
-                 [(ngModel)]="userInput"
-                 (keyup)="onTyping(true)"
-                 (keyup.enter)="sendMessage()"
-                 (blur)="onTyping(false)">
-          <button class="btn btn-primary" (click)="sendMessage()">
-            <i class="bi bi-send-fill"></i>
-          </button>
-        </div>
-      </div>
+      <div class="message-content">{{ msg.message }}</div>
     </div>
+  </div>
+
+  <div class="typing-indicator" *ngIf="someoneTyping">
+    <small>Someone is typing...</small>
+  </div>
+
+  <div class="input-area">
+    <input type="text"
+           class="message-input"
+           placeholder="Type a message..."
+           [(ngModel)]="userInput"
+           (keyup)="onTyping(true)"
+           (keyup.enter)="sendMessage()"
+           (blur)="onTyping(false)">
+    <button class="send-button" (click)="sendMessage()">
+      <i class="bi bi-send-fill"></i>
+    </button>
   </div>
 </div>
