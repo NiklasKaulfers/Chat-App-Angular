@@ -59,9 +59,7 @@ export class RegisterComponent {
         }
       );
 
-      const data = await response.json();
-
-      if (data.status === 200 || data.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         this.userInfo = `registered as ${this.userName}`;
       } else {
         this.userInfo = "Server error occurred";
