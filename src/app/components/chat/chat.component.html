@@ -1,26 +1,33 @@
-<div class="full-screen-container">
-  <div>
+<div class="chat-container">
+  <div class="chat-header">
     <h2>{{room}}</h2>
   </div>
-  <div>
-    <div *ngFor="let msg of messages">
-      <div>
-        <p>{{msg.sender}}</p>
-        <p>{{msg.message}}</p>
-        <p>{{msg.timestamp}}</p>
+
+  <div class="chat-box">
+    <div *ngFor="let msg of messages" class="message">
+      <div class="message-content">
+        <strong class="sender">{{msg.sender}}</strong>
+        <p class="text">{{msg.message}}</p>
+        <small class="timestamp">{{msg.timestamp}}</small>
       </div>
     </div>
-
   </div>
-  <div>
+
+  <div class="chat-footer">
     <input
       [(ngModel)]="userInput"
-      (keydown)="sendMessage()"
+      class="chat-input"
+      (keydown.enter)="sendMessage()"
       (input)="onTyping(true)"
       (blur)="onTyping(false)"
-      placeholder="Type a message"
+      placeholder="Type a message..."
     >
-    <button (click)="sendMessage()">send</button>
-    <a routerLink="/rooms">leave room</a>
+    <button class="send-btn" (click)="sendMessage()">
+      <i class="bi bi-send"></i> Send
+    </button>
+  </div>
+
+  <div class="leave-room">
+    <a routerLink="/rooms" class="leave-btn">Leave Room</a>
   </div>
 </div>
