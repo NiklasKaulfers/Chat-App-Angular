@@ -1,9 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgClass, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import * as console from 'node:console';
-import {NavbarComponent} from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +10,7 @@ import {NavbarComponent} from '../navbar/navbar.component';
     NgIf,
     FormsModule,
     NgClass,
-    RouterLink,
-    NavbarComponent
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
