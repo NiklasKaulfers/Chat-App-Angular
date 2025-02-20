@@ -1,10 +1,15 @@
 .chat-box {
-  max-height: 80vh;
+  max-height: calc(100vh - 120px); /* Adjust for navbar/footer */
   min-height: 70vh;
   display: flex;
   flex-direction: column;
 }
+
+.d-flex.vh-100 {
+  width: 100vw;
+}
+
 .card {
   width: 100%;
-  max-width: none;
+  height: 100%;
 }
