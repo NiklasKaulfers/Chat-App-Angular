@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {NgClass, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-account-manager',
   imports: [
     NgClass,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './account-manager.component.html',
   styleUrl: './account-manager.component.css'
@@ -17,6 +19,8 @@ export class AccountManagerComponent implements OnInit{
   showPassword: boolean = false;
   errorDisplay: string = "";
   errorExists: boolean = false;
+  passwordChangeRequestSent: boolean = false;
+  passwordChangeAnswer: string = "";
 
   constructor(private router: Router) {
   }
@@ -73,6 +77,13 @@ export class AccountManagerComponent implements OnInit{
         newPassword: this.newPassword
       })
     });
+
+    if (response.status === 200){
+      this.passwordChangeAnswer = "Password changed."
+    } else {
+      this.passwordChangeAnswer = "Password failed to change."
+    }
+    this.passwordChangeRequestSent = true;
     this.newPassword = ""
   }
 }

@@ -14,7 +14,7 @@
       <label class="fw-bold">Username</label>
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-person"></i></span>
-        <input type="text" class="form-control bg-light" [value]="user?.username" disabled />
+        <input type="text" class="form-control bg-light" [value]="user.username" disabled />
       </div>
     </div>
 
@@ -30,6 +30,7 @@
     </div>
 
     <button class="btn btn-primary w-100" (click)="changePassword()">Update Password</button>
+    <p *ngIf="passwordChangeRequestSent">{{passwordChangeAnswer}}</p>
   </div>
 </div>
 
