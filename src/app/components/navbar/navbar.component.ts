@@ -15,7 +15,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
-  username: string = localStorage.getItem("username") || " ";
+  username: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -23,16 +23,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.authService.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
-      this.username = localStorage.getItem("username") || " ";
-    })
+      this.username = localStorage.getItem("username") || "";
+    });
   }
 
-
-  async logout() {
-    localStorage.clear();
-    this.isLoggedIn = false;
-    this.username = '';
-    window.location.reload()
-    await this.router.navigate(['/start']);
+  logout() {
+    this.authService.logout(); // Use the AuthService's logout method
+    this.router.navigate(['/start']);
   }
 }
