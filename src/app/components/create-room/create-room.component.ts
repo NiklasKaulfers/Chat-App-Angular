@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-create-room',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   templateUrl: './create-room.component.html',
   styleUrl: './create-room.component.css'
@@ -60,10 +62,10 @@ export class CreateRoomComponent {
 
       const data = await response.json();
 
-      if (data.status === 200 || data.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         this.creationFeedback = `Created room: ${this.title}`;
       } else {
-        this.creationFeedback = data.error;
+        this.creationFeedback = "Couldnt create the room";
       }
     } catch (error) {
       this.creationFeedback = "Network error occurred";
