@@ -13,8 +13,9 @@ export class AuthService {
     this.loggedIn.next(!!token);
   }
 
-  login(token: string) {
+  login(token: string, username: string) {
     localStorage.setItem('token', token);
+    localStorage.setItem("username", username)
     this.loggedIn.next(true);
   }
 
