@@ -1,22 +1,6 @@
-body,
-html {
-  height: 100%;
-}
-
-.chat-container {
-  height: calc(100vh - 56px);
-}
-
-
-.chat-messages {
-  height: calc(100% - 60px);
-  overflow-y: auto;
-}
-
-.message {
-  max-width: 75%;
-}
-
-.message-input {
-  border-top: 1px solid #dee2e6;
+.chat-box {
+  max-height: 400px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
 }
