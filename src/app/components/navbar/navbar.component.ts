@@ -15,7 +15,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
-  username: string = '';
+  username: string = localStorage.getItem("username") || " ";
 
   constructor(private authService: AuthService, private router: Router) {
   }
