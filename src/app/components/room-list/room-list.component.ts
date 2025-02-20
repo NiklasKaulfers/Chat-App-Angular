@@ -66,6 +66,7 @@ export class RoomListComponent implements OnInit {
     }
     const responseItem = await response.json();
     localStorage.setItem("roomToken", responseItem.roomToken);
+    localStorage.setItem("room", room.display_name)
     console.log("success");
     await this.router.navigate(['/chat']);
   }
