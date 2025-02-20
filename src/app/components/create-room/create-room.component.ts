@@ -60,7 +60,7 @@ export class CreateRoomComponent {
 
       const data = await response.json();
 
-      if (data.ok) {
+      if (data.status === 200 || data.status === 201) {
         this.creationFeedback = `Created room: ${this.title}`;
       } else {
         this.creationFeedback = data.error;
