@@ -49,7 +49,7 @@ export class LoginComponent{
       const data = await response.json();
 
       if (response.ok) {
-        this.authService.login(data.accessToken)
+        this.authService.login(data.accessToken, this.username);
         localStorage.setItem("username", this.username);
         localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
