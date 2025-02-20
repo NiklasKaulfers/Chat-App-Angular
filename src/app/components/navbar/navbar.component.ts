@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {NgIf} from '@angular/common';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,20 +17,15 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string = '';
 
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
-    this.checkLoginStatus();
+    this.authService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+    })
   }
 
-  checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.isLoggedIn = true;
-      this.username = localStorage.getItem('username') || 'User';
-    } else {
-      this.isLoggedIn = false;
-    }
-  }
 
   async logout() {
     localStorage.clear();
@@ -38,5 +34,4 @@ export class NavbarComponent implements OnInit {
     window.location.reload()
     await this.router.navigate(['/start']);
   }
-  constructor(private router: Router) {}
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgClass, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent{
   loginState: string = "";
   showPassword: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   togglePasswordVisibility = () => {
     this.showPassword = !this.showPassword;
@@ -48,11 +49,11 @@ export class LoginComponent{
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.accessToken);
+        this.authService.login(data.token)
         localStorage.setItem("username", this.username);
         localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
-        this.router.navigate(['/start']).then(window.location.reload);
+        await this.router.navigate(['/start']);
       } else {
         this.loginState = "Invalid username or password";
       }
@@ -61,5 +62,6 @@ export class LoginComponent{
       this.loginState = "Server error, please try again";
     }
   };
+
 
 }

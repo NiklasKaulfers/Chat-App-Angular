@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-start-page',
@@ -13,10 +14,12 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent{
+  constructor(private authService: AuthService) {
+  }
   loggedIn: boolean = this.checkAuthState();
 
   logout() {
-    localStorage.clear();
+    this.authService.logout();
     window.location.reload();
   }
 
