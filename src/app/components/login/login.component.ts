@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgClass, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import * as console from 'node:console';
+import {NavbarComponent} from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +13,12 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgClass,
     RouterLink,
+    NavbarComponent
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent{
   username: string = "";
   password: string = "";
   logInRequestSent: boolean = false;
@@ -52,7 +55,7 @@ export class LoginComponent {
         localStorage.setItem("username", this.username);
         localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
-        await this.router.navigate(['/start']);
+        this.router.navigate(['/start']).then(window.location.reload);
       } else {
         this.loginState = "Invalid username or password";
       }
@@ -61,4 +64,5 @@ export class LoginComponent {
       this.loginState = "Server error, please try again";
     }
   };
+
 }
