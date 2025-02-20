@@ -46,7 +46,8 @@ title {
   font-weight: bold;
 }
 app-root {
-  width: 100%;
+  display: block;
+  width: 100vw;
   margin: 0;
   padding: 0;
 }
