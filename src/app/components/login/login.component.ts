@@ -49,7 +49,7 @@ export class LoginComponent{
       const data = await response.json();
 
       if (response.ok) {
-        this.authService.login(data.token)
+        this.authService.login(data.accessToken)
         localStorage.setItem("username", this.username);
         localStorage.setItem("refreshToken", data.refreshToken);
         this.loginState = "Login successful!";
@@ -62,6 +62,7 @@ export class LoginComponent{
       this.loginState = "Server error, please try again";
     }
   };
+
 
 
 }
