@@ -1,24 +1,20 @@
-<div class="container-fluid p-3 h-100">
+<div class="container-fluid chat-container">
   <div class="row h-100">
-    <div class="col-12 h-100">
+    <div class="col-12 p-0">
       <div class="card shadow h-100">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Chat Room: {{room || 'Lobby'}}</h5>
-          <div>
-            <span class="badge bg-light text-dark me-2">{{user || 'Guest'}}</span>
-          </div>
         </div>
 
         <div class="card-body d-flex flex-column p-0 h-100">
-          <div class="chat-box flex-grow-1 p-3 overflow-auto" #chatBox>
+          <div class="chat-messages flex-grow-1 p-3 overflow-auto" #chatBox>
             <div *ngFor="let msg of messages"
-                 class="chat-message mb-2 p-2 rounded"
-                 [ngClass]="{'sender-message': msg.sender === user, 'received-message': msg.sender !== user, 'system-message': msg.sender === 'Server'}">
-              <div class="message-header mb-1">
-                <strong>{{ msg.sender }}</strong>
+                 class="message mb-3"
+                 [ngClass]="{'align-self-start': msg.sender !== user, 'align-self-end': msg.sender === user}">
+              <div [ngClass]="{'bg-light rounded p-2': msg.sender !== user, 'bg-primary text-white rounded p-2': msg.sender === user, 'bg-secondary text-white rounded p-2': msg.sender === 'Server'}">
+                <strong>{{ msg.sender }}:</strong> {{ msg.message }}
                 <small *ngIf="msg.timestamp" class="text-muted ms-2">{{ msg.timestamp | date:'shortTime' }}</small>
               </div>
-              <div class="message-content">{{ msg.message }}</div>
             </div>
           </div>
 
@@ -26,7 +22,7 @@
             <small class="text-muted fst-italic">Someone is typing...</small>
           </div>
 
-          <div class="chat-input p-2 border-top mt-auto">
+          <div class="message-input p-3 border-top mt-auto">
             <div class="input-group">
               <input type="text"
                      class="form-control"
@@ -36,7 +32,7 @@
                      (keyup.enter)="sendMessage()"
                      (blur)="onTyping(false)">
               <button class="btn btn-primary" (click)="sendMessage()">
-                <i class="bi bi-send-fill"></i>
+                <i class="bi bi-send-fill"></i> Send
               </button>
             </div>
           </div>
