@@ -78,25 +78,6 @@ export class RoomListComponent implements OnInit {
     return creator === localStorage.getItem("username");
 
   }
-
-  async deleteRoom(room: Room) {
-
-    const token: string | null = localStorage.getItem("token");
-    if (!token){
-      console.error("ERROR: User not logged in.");
-      return;
-    }
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/" + room.id, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    });
-    if (response.status === 200){
-
-    }
-  }
 }
 interface Room {
   id: string;
