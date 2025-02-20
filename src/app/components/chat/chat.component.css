@@ -1,33 +1,102 @@
-body, html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f8ff;
-}
-
-.container-fluid {
-  padding: 0;
+/* Angular Bootstrap Chat Styles */
+:host {
+  display: block;
   height: 100vh;
-}
-
-.row, .col-12 {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.card {
-  height: 100vh;
-  border-radius: 0;
-}
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 56px);
+  width: 100vw;
+  overflow: hidden;
 }
 
 .chat-box {
-  flex: 1;
-  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.chat-message {
+  max-width: 75%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sender-message {
+  background-color: var(--bs-primary);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
+}
+
+.received-message {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+  border-bottom-left-radius: 0;
+}
+
+.system-message {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--bs-secondary);
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.message-content {
+  word-break: break-word;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0 !important;
+  }
+
+  .card {
+    border-radius: 0 !important;
+  }
+
+  .card-header {
+    border-radius: 0 !important;
+  }
+
+  .chat-message {
+    max-width: 85%;
+  }
+}
+
+/* Handle proper display on different aspect ratios */
+@media (min-aspect-ratio: 16/9) {
+  :host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-fluid {
+    height: calc(100vw * 9/16);
+    max-height: 100vh;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  :host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-fluid {
+    width: calc(100vh * 16/9);
+    max-width: 100vw;
+  }
 }
