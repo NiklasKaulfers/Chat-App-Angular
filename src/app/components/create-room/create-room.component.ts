@@ -63,7 +63,7 @@ export class CreateRoomComponent {
       if (data.ok) {
         this.creationFeedback = `Created room: ${this.title}`;
       } else {
-        this.creationFeedback = data;
+        this.creationFeedback = data.error;
       }
     } catch (error) {
       this.creationFeedback = "Network error occurred";
