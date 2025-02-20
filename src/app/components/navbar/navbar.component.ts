@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string = '';
 
+
   ngOnInit() {
     this.checkLoginStatus();
   }
@@ -34,7 +35,6 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     this.isLoggedIn = false;
     this.username = '';
-    window.location.reload();
     this.router.navigate(['/start']);
   }
   constructor(private router: Router) {}
