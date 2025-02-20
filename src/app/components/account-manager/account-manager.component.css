@@ -1,0 +1,29 @@
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline-secondary {
+  border-radius: 0 6px 6px 0;
+}

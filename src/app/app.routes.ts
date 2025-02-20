@@ -7,6 +7,7 @@ import {ChatComponent} from './components/chat/chat.component';
 import {CreateRoomComponent} from './components/create-room/create-room.component';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {DeleteRoomComponent} from './components/delete-room/delete-room.component';
+import {AccountManagerComponent} from './components/account-manager/account-manager.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: '', redirectTo: "start", pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent},
-  { path: 'deleteRoom', component: DeleteRoomComponent}
+  { path: 'deleteRoom', component: DeleteRoomComponent},
+  { path: 'account', component: AccountManagerComponent}
 ];

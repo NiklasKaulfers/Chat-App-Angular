@@ -1,0 +1,35 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%; border-radius: 12px;">
+    <h2 class="text-center mb-3">Account Settings</h2>
+    <p *ngIf="errorExists">{{errorDisplay}}</p>
+    <div class="mb-3">
+      <label class="fw-bold">Email</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+        <input type="text" class="form-control bg-light" [value]="user?.email" disabled />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="fw-bold">Username</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <input type="text" class="form-control bg-light" [value]="user?.username" disabled />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="fw-bold">New Password</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control" [(ngModel)]="newPassword" placeholder="Enter new password" />
+        <button class="btn btn-outline-secondary" type="button" (click)="togglePassword()">
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="changePassword()">Update Password</button>
+  </div>
+</div>
+
