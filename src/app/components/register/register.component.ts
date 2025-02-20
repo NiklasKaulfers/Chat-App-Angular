@@ -12,7 +12,6 @@ import {NgClass} from '@angular/common';
   ]
 })
 export class RegisterComponent {
-  buttonPressed = false;
   userInfo: string = "";
   userName: string = "";
   email: string = "";
@@ -25,7 +24,6 @@ export class RegisterComponent {
   };
 
   createUser = async (): Promise<void> => {
-    this.buttonPressed = true;
 
     if (!this.userName) {
       this.userInfo = "Your username is required";
