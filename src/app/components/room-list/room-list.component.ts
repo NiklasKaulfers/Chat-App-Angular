@@ -20,7 +20,6 @@ export class RoomListComponent implements OnInit {
     await this.fetchRooms();
   }
 
-  /** Fetch rooms from the API */
   async fetchRooms(): Promise<void> {
 
     const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
@@ -66,7 +65,7 @@ export class RoomListComponent implements OnInit {
       return;
     }
     const responseItem = await response.json();
-    localStorage.setItem("room_token", responseItem.roomToken);
+    localStorage.setItem("roomToken", responseItem.roomToken);
     console.log("success");
     await this.router.navigate(['/chat']);
   }
