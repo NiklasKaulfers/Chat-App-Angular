@@ -1,11 +1,11 @@
 <div class="d-flex flex-column vh-100">
   <div class="flex-grow-1 d-flex flex-column bg-light w-100">
-    <div class="card shadow-lg rounded-0 w-100 h-100">
+    <div class="card shadow-lg rounded-0 w-100 h-100 border-0">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">Chat Room: {{ room || 'Lobby' }}</h5>
       </div>
 
-      <div class="card-body chat-box overflow-auto">
+      <div class="card-body chat-box overflow-auto px-3">
         <div *ngFor="let msg of messages" class="mb-3 d-flex"
              [ngClass]="{'justify-content-end': msg.sender === user, 'justify-content-start': msg.sender !== user}">
           <div class="p-3 rounded-3 text-white"
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="card-footer d-flex gap-2">
+      <div class="card-footer d-flex gap-2 p-3">
         <input type="text" class="form-control" placeholder="Type a message..." [(ngModel)]="userInput"
                (keyup.enter)="sendMessage()" (keyup)="onTyping(true)" (blur)="onTyping(false)">
         <button class="btn btn-primary" (click)="sendMessage()">
