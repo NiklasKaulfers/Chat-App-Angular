@@ -45,3 +45,8 @@ title {
   margin-bottom: 20px;
   font-weight: bold;
 }
+app-root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
