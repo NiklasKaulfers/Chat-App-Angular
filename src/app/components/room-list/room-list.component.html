@@ -9,16 +9,16 @@
         <h3 class="text-primary">{{ room.display_name }}</h3>
         <p><strong>ID:</strong> {{ room.id }}</p>
         <p><strong>Creator:</strong> {{ room.creator }}</p>
-
-        <p *ngIf="userIsCreator(room.creator)">
-          <button id="deleteRoom" class="btn btn-danger w-100" (click)="deleteRoom(room)">Delete</button>
-        </p>
-
         <p *ngIf="room.has_password">
           <input type="password" class="form-control" [id]="room.id" placeholder="Enter Password">
         </p>
 
         <button class="btn btn-primary w-100 mt-auto" (click)="joinRoom(room)">Join Room</button>
+
+        <p *ngIf="userIsCreator(room.creator)">
+          <button id="deleteRoom" class="btn btn-danger w-100" (click)="deleteRoom(room)">Delete</button>
+        </p>
+
       </div>
     </div>
   </div>
