@@ -1,13 +1,13 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {NgForOf, NgIf, DatePipe} from '@angular/common';
+import {NgForOf, NgIf, DatePipe, NgClass} from '@angular/common';
 import {Router} from '@angular/router';
 import {io, Socket} from 'socket.io-client';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, DatePipe],
+  imports: [FormsModule, NgForOf, NgIf, DatePipe, NgClass],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
