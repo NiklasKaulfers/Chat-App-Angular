@@ -1,16 +1,37 @@
 <div class="container mt-4">
-  <div class="card">
-    <div class="card-body chat-container">
-      <h5 class="card-title">Chat Room</h5>
-
-      <div class="chat-box">
-        <div *ngFor="let msg of messages" class="chat-message">
-          <strong>{{ msg.sender }}:</strong> {{ msg.message }}
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Chat Room: {{room || 'Lobby'}}</h5>
+      <span class="badge bg-light text-dark">{{user || 'Guest'}}</span>
+    </div>
+    <div class="card-body chat-container p-0">
+      <div class="chat-box p-3" #chatBox>
+        <div *ngFor="let msg of messages"
+             class="chat-message mb-2 p-2 rounded"
+             [ngClass]="{'sender-message': msg.sender === user, 'received-message': msg.sender !== user, 'system-message': msg.sender === 'Server'}">
+          <div class="message-header mb-1">
+            <strong>{{ msg.sender }}</strong>
+            <small *ngIf="msg.timestamp" class="text-muted ms-2">{{ msg.timestamp | date:'shortTime' }}</small>
+          </div>
+          <div class="message-content">{{ msg.message }}</div>
         </div>
       </div>
-      <div class="d-flex mt-3">
-        <input type="text" class="form-control me-2" placeholder="Type a message..." [(ngModel)]="userInput">
-        <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+      <div class="typing-indicator px-3 py-1 text-muted" *ngIf="someoneTyping">
+        <small>Someone is typing...</small>
+      </div>
+      <div class="input-area p-3 border-top">
+        <div class="d-flex">
+          <input type="text"
+                 class="form-control me-2"
+                 placeholder="Type a message..."
+                 [(ngModel)]="userInput"
+                 (keyup)="onTyping(true)"
+                 (keyup.enter)="sendMessage()"
+                 (blur)="onTyping(false)">
+          <button class="btn btn-primary" (click)="sendMessage()">
+            <i class="bi bi-send-fill"></i> Send
+          </button>
+        </div>
       </div>
     </div>
   </div>
