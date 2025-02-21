@@ -9,7 +9,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
 
-        <!-- Show if NOT Logged In -->
         <ng-container *ngIf="!isLoggedIn">
           <li class="nav-item">
             <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
@@ -19,10 +18,9 @@
           </li>
         </ng-container>
 
-        <!-- Show if Logged In -->
         <ng-container *ngIf="isLoggedIn">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="roomDropdown" role="button" data-bs-toggle="dropdown" mdbDropdowToggle
+            <a class="nav-link dropdown-toggle" id="roomDropdown" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
               Rooms
             </a>

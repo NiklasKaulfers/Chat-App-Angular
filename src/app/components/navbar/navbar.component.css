@@ -1,7 +1,9 @@
 .navbar {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.dropdown-menu { min-width: 200px; }x
+.dropdown-menu {
+  min-width: 200px;
+}
 
 .nav-link.active {
   font-weight: bold;
@@ -11,4 +13,9 @@
 body {
   margin-top: 70px;
 }
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
 
