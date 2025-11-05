@@ -23,7 +23,7 @@ export class DeleteRoomComponent implements OnInit{
     if (!token){
       await this.router.navigate(["/login"])
     }
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/ownedByUser", {
+    const response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/rooms/ownedByUser", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -49,7 +49,7 @@ export class DeleteRoomComponent implements OnInit{
       console.error("ERROR: User not logged in.");
       return;
     }
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/" + room.id, {
+    const response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/rooms/" + room.id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

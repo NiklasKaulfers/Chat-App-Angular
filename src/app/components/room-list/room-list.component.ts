@@ -22,7 +22,7 @@ export class RoomListComponent implements OnInit {
 
   async fetchRooms(): Promise<void> {
 
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms", {
+    const response = await fetch("https://chat-app-backend-xi-five.vercel.appapi/rooms", {
       method: "GET"
     });
     if (!response.ok) {
@@ -52,7 +52,7 @@ export class RoomListComponent implements OnInit {
       }
       pin = passwordHtmlComponent.innerText;
     }
-    const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/rooms/" + room.id, {
+    const response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/rooms/" + room.id, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

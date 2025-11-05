@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       return;
     }
 
-    this.socket = io("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com", {
+    this.socket = io("https://chat-app-backend-xi-five.vercel.app", {
       transports: ["websocket", "polling"],
       auth: {
         token: this.roomToken

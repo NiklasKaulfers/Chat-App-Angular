@@ -31,7 +31,7 @@ export class ForgotPasswordComponent {
 
     try {
       const response = await fetch(
-        'https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/passwordManagement/passwordReset',
+        'https://chat-app-backend-xi-five.vercel.app/api/passwordManagement/passwordReset',
         {
           method: 'POST',
           headers: {

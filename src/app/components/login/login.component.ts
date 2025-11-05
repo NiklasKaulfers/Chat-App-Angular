@@ -38,7 +38,7 @@ export class LoginComponent{
     this.logInRequestSent = true;
 
     try {
-      const response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/login", {
+      const response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

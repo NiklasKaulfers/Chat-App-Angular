@@ -34,7 +34,7 @@ export class AccountManagerComponent implements OnInit{
       return;
     }
 
-    const response: Response = await fetch("https://web-ing-iib23-chat-app-backend-377dbfe5320c.herokuapp.com/api/users/" + userId , {
+    const response: Response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/users/" + userId , {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
