@@ -22,7 +22,7 @@ export class RoomListComponent implements OnInit {
 
   async fetchRooms(): Promise<void> {
 
-    const response = await fetch("https://chat-app-backend-xi-five.vercel.appapi/rooms", {
+    const response = await fetch("https://chat-app-backend-xi-five.vercel.app/api/rooms", {
       method: "GET"
     });
     if (!response.ok) {

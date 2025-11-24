@@ -62,7 +62,4 @@ export class LoginComponent{
       this.loginState = "Server error, please try again";
     }
   };
-
-
-
 }
